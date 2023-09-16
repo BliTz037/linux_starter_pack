@@ -21,10 +21,12 @@ packages_list=(build-essential
                 vim
                 git
                 htop
+                vlc
                 curl
                 wget
                 ca-certificates
                 gnupg
+                
 
 )
 apt-get install -y ${packages_list[@]}
@@ -65,12 +67,26 @@ echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Giving permissions to current us
 groupadd docker
 usermod -aG docker $USER
 
-# Install Brave Browser
-echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing Brave Browser"
-curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"| tee /etc/apt/sources.list.d/brave-browser-release.list
-apt update -y
-apt install -y brave-browser
+# Install zsh
+echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing zsh & oh-my-zsh"
+apt-get install -y zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Change default shell to zsh
+echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Changing default shell to zsh"
+chsh -s $(which zsh)
+
+# Change default theme to eastwood and add aliases
+echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Changing default theme to eastwood & adding aliases"
+sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="eastwood"/g' ~/.zshrc
+echo "alias cls='clear'" >> ~/.zshrc
+
+# Add Monokaï theme to Vim
+echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Adding Monokaï theme to Vim"
+mkdir -p ~/.vim/colors
+wget https://raw.githubusercontent.com/sickill/vim-monokai/master/colors/monokai.vim -O ~/.vim/colors/monokai.vim
+echo "syntax enable" >> ~/.vimrc
+echo "colorscheme monokai" >> ~/.vimrc
 
 # Install VSCode
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing VSCode"
@@ -80,6 +96,37 @@ wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > pa
 install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
 sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
 rm -f packages.microsoft.gpg
+apt-get install -y apt-transport-https
+apt-get update -y
+apt-get install -y code
+
+# Install Brave Browser
+echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing Brave Browser"
+curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"| tee /etc/apt/sources.list.d/brave-browser-release.list
+apt update -y
+apt install -y brave-browser
+
+# Install Postman
+echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing Postman"
+snap install -y postman
+
+# Install Discord
+echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing Discord"
+wget -O /tmp/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
+apt install -y /tmp/discord.deb
+
+# Install Gnome Tweaks
+echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing Gnome Tweaks"
+apt install -y gnome-tweaks
+
+
+# Setting up Gnome settings
+echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Setting up Gnome settings"
+# Enable night light
+echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Enabling night light"
+gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
+gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic true
 
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Install finished! Please Logout and Login again to apply changes !"
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Have a happy coding day !"
