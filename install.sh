@@ -64,7 +64,6 @@ apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin do
 
 # Give permissions to current user
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Giving permissions to current user for Docker"
-groupadd docker
 usermod -aG docker $USER
 
 # Install zsh
@@ -72,17 +71,19 @@ echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing zsh & oh-my-zsh"
 apt-get install -y zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+
+# Change default theme to eastwood and add aliases
+echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Changing default theme to eastwood & adding aliases"
+sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="eastwood"/' ~/.zshrc
+echo "alias cls='clear'" >> ~/.zshrc
+
 # Change default shell to zsh
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Changing default shell to zsh"
 chsh -s $(which zsh)
 
-# Change default theme to eastwood and add aliases
-echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Changing default theme to eastwood & adding aliases"
-sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="eastwood"/g' ~/.zshrc
-echo "alias cls='clear'" >> ~/.zshrc
-
 # Add Monokaï theme to Vim
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Adding Monokaï theme to Vim"
+mkdir -p ~/.vim/
 mkdir -p ~/.vim/colors
 wget https://raw.githubusercontent.com/sickill/vim-monokai/master/colors/monokai.vim -O ~/.vim/colors/monokai.vim
 echo "syntax enable" >> ~/.vimrc
