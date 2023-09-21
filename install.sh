@@ -2,10 +2,6 @@
 
 clear
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing packages"
-if [ "$(id -u)" -ne 0 ]; then
-   echo "This script must be run as root" 1>&2
-   exit 1
-fi
 
 # Update packages
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Updating packages"
