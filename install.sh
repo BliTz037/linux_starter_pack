@@ -6,8 +6,8 @@ echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing packages"
 # Update packages
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Updating packages"
 
-sudo apt-get update -y
-sudo apt-get upgrade -y
+sudo apt update -y
+sudo apt upgrade -y
 
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing packages"
 
@@ -25,7 +25,7 @@ packages_list=(build-essential
                 gpg
                 snapd
 )
-sudo apt-get install -y ${packages_list[@]}
+sudo apt install -y ${packages_list[@]}
 
 # Install NodeJS
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing NodeJS"
@@ -35,15 +35,14 @@ curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg 
 NODE_MAJOR=20
 echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
 
-sudo apt-get update -y
-sudo apt-get install -y nodejs
+sudo apt update -y
+sudo apt install -y nodejs
 
 # Install Docker & Docker Compose
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing Docker & Docker Compose"
 
 # Add Docker's official GPG key:
-sudo apt-get update -y
-sudo apt-get install -y ca-certificates curl gnupg
+sudo apt update -y
 sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
@@ -51,12 +50,11 @@ sudo chmod a+r /etc/apt/keyrings/docker.gpg
 # Add the repository to Apt sources:
 echo \
   "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update -y
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update -y
 
 # Install Docker & Docker Compose:
-sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # Give permissions to current user
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Giving permissions to current user for Docker"
@@ -78,9 +76,9 @@ wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor
 sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
 sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
 rm -f packages.microsoft.gpg
-sudo apt-get install -y apt-transport-https
-sudo apt-get update -y
-sudo apt-get install -y code
+sudo apt install -y apt-transport-https
+sudo apt update -y
+sudo apt install -y code
 
 # Install Brave Browser
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing Brave Browser"
@@ -113,7 +111,7 @@ gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-autom
 
 # Install zsh
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing zsh & oh-my-zsh"
-sudo apt-get install -y zsh
+sudo apt install -y zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --unattended"
 
 # Change default shell to zsh
