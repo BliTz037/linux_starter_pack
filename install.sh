@@ -111,13 +111,11 @@ gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-autom
 # Install zsh
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing zsh & oh-my-zsh"
 sudo apt-get install -y zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --unattended"
 
 # Change default shell to zsh
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Changing default shell to zsh"
 chsh -s $(which zsh)
-
 
 # Change default theme to eastwood and add aliases
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Changing default theme to eastwood & adding aliases"
