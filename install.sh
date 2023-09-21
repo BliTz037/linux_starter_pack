@@ -23,6 +23,7 @@ packages_list=(build-essential
                 ca-certificates
                 gnupg
                 gpg
+                snapd
 )
 sudo apt-get install -y ${packages_list[@]}
 
@@ -51,14 +52,15 @@ sudo chmod a+r /etc/apt/keyrings/docker.gpg
 echo \
   "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-   tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get -y update
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update -y
 
 # Install Docker & Docker Compose:
 sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # Give permissions to current user
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Giving permissions to current user for Docker"
+sudo groupadd docker
 sudo usermod -aG docker $USER
 
 # Add Monokaï theme to Vim
@@ -83,7 +85,8 @@ sudo apt-get install -y code
 # Install Brave Browser
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing Brave Browser"
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"| tee /etc/apt/sources.list.d/brave-browser-release.list
+
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"| sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 sudo apt update -y
 sudo apt install -y brave-browser
 
