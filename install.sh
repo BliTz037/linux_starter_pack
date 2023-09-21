@@ -92,7 +92,7 @@ sudo apt install -y brave-browser
 
 # Install Postman
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing Postman"
-sudo snap install -y postman
+sudo snap install postman
 
 # Install Discord
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing Discord"
