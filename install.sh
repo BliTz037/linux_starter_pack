@@ -21,6 +21,7 @@ packages_list=(build-essential
                 curl
                 wget
                 ca-certificates
+                apt-transport-https
                 gnupg
                 gpg
                 snapd
@@ -75,11 +76,10 @@ echo "colorscheme monokai" >> ~/.vimrc
 # Install VSCode
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing VSCode"
 
-wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor > packages.microsoft.gpg
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
 rm -f packages.microsoft.gpg
-sudo apt install -y apt-transport-https
 sudo apt update -y
 sudo apt install -y code
 
@@ -97,14 +97,14 @@ sudo snap install postman
 
 # Install Discord
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing Discord"
-TMP_DISCORD_DEB="$(mktemp)"
+TMP_DISCORD_DEB="$(mktemp).deb"
 wget -O "$TMP_DISCORD_DEB" "https://discordapp.com/api/download?platform=linux&format=deb"
 sudo apt install -y "$TMP_DISCORD_DEB"
 rm -f "$TMP_DISCORD_DEB"
 
 # Install VPN
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing VPN"
-TMP_VPN_DEB="$(mktemp)"
+TMP_VPN_DEB="$(mktemp).deb"
 wget -O "$TMP_VPN_DEB" "https://repo.hotspotshield.com/deb/rel/all/pool/main/h/hotspotshield/hotspotshield_1.0.7_amd64.deb?ko_click_id=ko_70f46520395074c88"
 sudo apt install -y "$TMP_VPN_DEB"
 rm -f "$TMP_VPN_DEB"
