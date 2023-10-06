@@ -97,8 +97,17 @@ sudo snap install postman
 
 # Install Discord
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing Discord"
-wget -O /tmp/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
-sudo apt install -y /tmp/discord.deb
+TMP_DISCORD_DEB="$(mktemp)"
+wget -O "$TMP_DISCORD_DEB" "https://discordapp.com/api/download?platform=linux&format=deb"
+sudo apt install -y "$TMP_DISCORD_DEB"
+rm -f "$TMP_DISCORD_DEB"
+
+# Install VPN
+echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing VPN"
+TMP_VPN_DEB="$(mktemp)"
+wget -O "$TMP_VPN_DEB" "https://repo.hotspotshield.com/deb/rel/all/pool/main/h/hotspotshield/hotspotshield_1.0.7_amd64.deb?ko_click_id=ko_70f46520395074c88"
+sudo apt install -y "$TMP_VPN_DEB"
+rm -f "$TMP_VPN_DEB"
 
 # Install Gnome Tweaks
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing Gnome Tweaks"
