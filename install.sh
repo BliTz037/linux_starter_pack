@@ -24,7 +24,9 @@ packages_list=(build-essential
                 gnupg
                 gpg
                 snapd
+                gimp
 )
+
 sudo apt install -y ${packages_list[@]}
 
 # Install NodeJS
