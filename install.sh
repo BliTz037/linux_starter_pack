@@ -14,6 +14,8 @@ echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing packages"
 # Install packages
 # List of packages to install
 packages_list=(build-essential
+                neofetch
+                jq
                 vim
                 git
                 htop
@@ -113,7 +115,6 @@ rm -f "$TMP_VPN_DEB"
 # Install Gnome Tweaks
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing Gnome Tweaks"
 sudo apt install -y gnome-tweaks
-
 
 # Setting up Gnome settings
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Setting up Gnome settings"
