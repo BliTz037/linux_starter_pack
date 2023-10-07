@@ -57,10 +57,11 @@ echo \
   "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt update -y
 
 # Install Docker & Docker Compose:
-sudo apt -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+sudo apt update -y
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # Give permissions to current user
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Giving permissions to current user for Docker"
@@ -123,6 +124,10 @@ echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Setting up Gnome settings"
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Enabling night light"
 gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic true
+
+# Edit desktop Options
+echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Editing desktop options"
+gsettings set org.gnome.desktop.interface show-battery-percentage true
 
 # Install zsh
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing zsh & oh-my-zsh"
