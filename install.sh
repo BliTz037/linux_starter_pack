@@ -42,6 +42,7 @@ echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.co
 
 sudo apt update -y
 sudo apt install -y nodejs
+sudo npm install yarn -g
 
 # Install Docker & Docker Compose
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing Docker & Docker Compose"
