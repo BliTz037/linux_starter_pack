@@ -72,6 +72,7 @@ mkdir -p ~/.vim/colors
 wget https://raw.githubusercontent.com/sickill/vim-monokai/master/colors/monokai.vim -O ~/.vim/colors/monokai.vim
 echo "syntax enable" >> ~/.vimrc
 echo "colorscheme monokai" >> ~/.vimrc
+echo "set number" >> ~/.vimrc
 
 # Install VSCode
 echo -e "\e[32m[BliTz Linux Starter Pack]\e[39m Installing VSCode"
